@@ -1,0 +1,41 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract GMContract {
+    struct GM {
+        address user;
+        uint256 timestamp;
+    }
+
+    GM[] public gms;
+    mapping(address => uint256) public lastGM;
+    uint256 public constant COOLDOWN = 24 hours;
+    uint256 public totalGM = 0;
+
+    event GMEvent(address indexed user, uint256 timestamp);
+
+    function sendGM() public {
+        require(block.timestamp >= lastGM[msg.sender] + COOLDOWN, "Cooldown active: Wait 24 hours");
+        gms.push(GM(msg.sender, block.timestamp));
+        lastGM[msg.sender] = block.timestamp;
+        totalGM++;
+        emit GMEvent(msg.sender, block.timestamp);
+    }
+
+    function getTotalGM() public view returns (uint256) {
+        return totalGM;
+    }
+
+    function getGMCount() public view returns (uint256) {
+        return gms.length;
+    }
+
+    function getLastGM(uint256 index) public view returns (address, uint256) {
+        GM memory gm = gms[index];
+        return (gm.user, gm.timestamp);
+    }
+
+    function getLastGMTime(address user) public view returns (uint256) {
+        return lastGM[user];
+    }
+}

@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    background: #f7f8fb;
+    color: #111;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #2b6ef6;
+    color: white;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+p, ul {
+    margin: 15px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#account, #cooldownTimer, #totalGM {
+    font-weight: bold;
+}
